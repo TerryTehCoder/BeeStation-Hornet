@@ -78,7 +78,7 @@
 	else if(locate(/obj/structure/bed, T))
 		propability = 0.5
 
-	return propability + sleepbonus - selfpenalty
+	return max(propability + sleepbonus - selfpenalty, 0.1)
 
 /datum/surgery_step/proc/initiate(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, try_to_fail = FALSE)
 	surgery.step_in_progress = TRUE
@@ -97,7 +97,7 @@
 	if(implement_type)//this means it isn't a require hand or any item step.
 		implement_speed_mod = implements[implement_type] / 100.0
 	speed_mod /= (get_speed_modifier(user, target) * (1 + surgery.speed_modifier) * implement_speed_mod)
-	
+
 	var/modded_time = time * speed_mod
 	fail_prob = min(max(0, modded_time - (time * 2)), 99)//if modded_time > time * 2, then fail_prob = modded_time - time*2. starts at 0, caps at 99
 	modded_time = min(modded_time, time * 2)//also if that, then cap modded_time at time*2
