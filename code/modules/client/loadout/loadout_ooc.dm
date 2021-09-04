@@ -6,10 +6,10 @@
 /datum/gear/ooc/char_slot
 	display_name = "extra character slot"
 	description = "An extra charslot. Pretty self-explanatory."
-	cost = 10000
+	cost = 500
 
 /datum/gear/ooc/char_slot/purchase(var/client/C)
-	C?.prefs?.max_save_slots += 1
+	C?.prefs?.max_save_slots += 5
 
 /datum/gear/ooc/real_antagtoken
 	display_name = "antag token"
