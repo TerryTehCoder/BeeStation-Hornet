@@ -731,6 +731,7 @@
 #include "code\game\gamemodes\traitor\traitor.dm"
 #include "code\game\gamemodes\wizard\wizard.dm"
 #include "code\game\machinery\_machinery.dm"
+#include "code\game\machinery\ai_datarack.dm"
 #include "code\game\machinery\ai_slipper.dm"
 #include "code\game\machinery\airlock_control.dm"
 #include "code\game\machinery\airlock_cycle_control.dm"

@@ -1102,3 +1102,5 @@
 
 /mob/living/silicon/ai/zMove(dir, feedback = FALSE)
 	. = eyeobj.zMove(dir, feedback)
+
+//Reserved for AI-DATARACKS, LEAVE ME ALONE

@@ -53,3 +53,4 @@
 
 /mob/living/silicon/ai/flash_act(intensity, override_blindness_check, affect_silicon, visual, type)
 	return // no eyes, no flashing
+	
