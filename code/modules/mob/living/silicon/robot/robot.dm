@@ -36,6 +36,16 @@
 
 	var/shown_robot_modules = 0	//Used to determine whether they have the module menu shown or not
 	var/atom/movable/screen/robot_modules_background
+//Cyborg pathing stuff
+	var/datum/atom_hud/data/bot_path/path_hud = new /datum/atom_hud/data/bot_path()
+	var/data_hud_type = DATA_HUD_DIAGNOSTIC_BASIC
+	var/path_image_icon = 'icons/mob/aibots.dmi'
+	var/path_image_icon_state = "path_indicator"
+	var/path_image_color = "#2189a3"
+	var/mob/living/silicon/ai/calling_ai //Important for identifying the A.I tasking it?
+	var/list/path = list() //Pathing for Cyborg Waypoints
+//Cyborg Objective Updates
+	var/busystatus = 0 //OCCUPADO, PLEASE HOLD
 
 //3 Modules can be activated at any one time.
 	var/obj/item/robot_module/module = null
@@ -327,6 +337,9 @@
 			tab_data["[st.name]"] = GENERATE_STAT_TEXT("[st.energy]/[st.max_energy]")
 	if(connected_ai)
 		tab_data["Master AI"] = GENERATE_STAT_TEXT("[connected_ai.name]")
+		for(var/mob/living/silicon/ai/AI) //I don't understand why this needs to be under For, but it does. 
+			tab_data["A.I Objective"] = GENERATE_STAT_TEXT("[AI.objectiveupdate]") //What are your Orders Master A.I?
+			tab_data["Busy Flag"] = GENERATE_STAT_TEXT("[busystatus ? "Utilized" : "Standingby"]")
 	return tab_data
 
 /mob/living/silicon/robot/restrained(ignore_grab)
@@ -1262,3 +1275,88 @@
 		cell.charge = min(cell.charge + amount, cell.maxcharge)
 	if(repairs)
 		heal_bodypart_damage(repairs, repairs - 1)
+
+/mob/living/silicon/robot/proc/set_path(list/newpath)	
+	path = newpath ? newpath : list()
+	if(!path_hud)
+		return
+	var/list/path_huds_watching_me = list(GLOB.huds[DATA_HUD_DIAGNOSTIC_ADVANCED])
+	if(path_hud)
+		path_huds_watching_me += path_hud
+	for(var/V in path_huds_watching_me)
+		var/datum/atom_hud/H = V
+		H.remove_from_hud(src)
+
+	var/list/path_images = hud_list[DIAG_PATH_HUD] //1015-1056 Bot.dm, I felt inspired to copy it. 
+	QDEL_LIST(path_images)
+	if(newpath)
+		for(var/i in 1 to newpath.len)
+			var/turf/T = newpath[i]
+			if(T == loc) //don't bother putting an image if it's where we already exist.
+				continue
+			var/direction = NORTH
+			if(i > 1)
+				var/turf/prevT = path[i - 1]
+				var/image/prevI = path[prevT]
+				direction = get_dir(prevT, T)
+				if(i > 2)
+					var/turf/prevprevT = path[i - 2]
+					var/prevDir = get_dir(prevprevT, prevT)
+					var/mixDir = direction|prevDir
+					if(mixDir in GLOB.diagonals)
+						prevI.dir = mixDir
+						if(prevDir & (NORTH|SOUTH))
+							var/matrix/ntransform = matrix()
+							ntransform.Turn(90)
+							if((mixDir == NORTHWEST) || (mixDir == SOUTHEAST))
+								ntransform.Scale(-1, 1)
+							else
+								ntransform.Scale(1, -1)
+							prevI.transform = ntransform
+			var/mutable_appearance/MA = new /mutable_appearance()
+			MA.icon = path_image_icon
+			MA.icon_state = path_image_icon_state
+			MA.layer = ABOVE_OPEN_TURF_LAYER
+			MA.plane = 0
+			MA.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+			MA.color = path_image_color
+			MA.dir = direction
+			var/image/I = image(loc = T)
+			I.appearance = MA
+			path[T] = I
+			path_images += I
+
+	for(var/V in path_huds_watching_me)
+		var/datum/atom_hud/H = V
+		H.add_to_hud(src)
+
+/mob/living/silicon/robot/proc/flagwaypoint(caller, turf/waypoint) //Cyborgs deserve waypoints too! Poor saps..
+	set_path(get_path_to(src, waypoint, /turf/proc/Distance_cardinal, 0, 200))
+	calling_ai = caller
+	if(path && path.len) //Ensures that a valid path is calculated!
+		to_chat(caller, "<span class='danger'>Valid Route Calculated. Plotting...</span>")
+	else
+		to_chat(caller, "<span class='danger'>Failed to calculate a valid route. Ensure destination is clear of obstructions and within range.</span>")
+		set_path(null)
+
+/mob/living/silicon/robot/proc/objectivesupdate()
+	var/mob/living/silicon/ai/AI
+	to_chat(src, "<span class='notice'>A.I Assigned Objective Updated. [AI.objectivesconfirm] Priority objective recieved as follows: [AI.objectiveupdate] </span>") //Objectives Updated, standby for Emergency Procedures. BEEEEP, BEEEP
+	busystatus = 1
+
+/mob/living/silicon/robot/verb/togglebusy()
+	set category = "Robot Commands"
+	set name = "Toggle Flag"
+	set desc = "Toggle your busy flag off/online to indicate your status to your A.I"
+	busystatus = !busystatus
+	to_chat(usr, "<span class='notice>Flag Toggled [busystatus ? "Offline, unavailable for lowpriority tasking." : "Online, ready for assignment."]</span>") //This isn't reading.
+
+/mob/living/silicon/robot/verb/setobjective()
+	set category = "Robot Commands"
+	set name = "Set Current Objective"
+	set desc = "Set your current objective, will display to your A.I"
+	var/A = 1
+	busystatus = 1
+	var/mob/living/silicon/ai/AI
+	AI.objectiveupdate = input(src, "What is your current objective, this will be displayed to your A.I.","Update Objective") //Problem, Anything after this won't read, including the to_chat
+	to_chat(src, "<span class='notice'>A.I Assigned Objective Updated. Objective set as follows: [AI.objectiveupdate] </span>")
