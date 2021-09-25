@@ -51,8 +51,8 @@
 	var/list/path = list() //Pathing for Cyborg Waypoints
 
 	//Cyborg Objective Updates
-	var/objectiveupdate //A.I inputting new objective.
-	var/objectivesconfirm //High, Low, Medium Priority?
+	var/objectiveupdate = "No Assigned Objective" //A.I inputting new objective.
+	var/objectivesconfirm = "Unregistered" //High, Low, Medium Priority?
 
 	//MALFUNCTION
 	var/datum/module_picker/malf_picker

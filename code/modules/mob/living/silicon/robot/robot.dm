@@ -339,7 +339,7 @@
 		tab_data["Master AI"] = GENERATE_STAT_TEXT("[connected_ai.name]")
 		for(var/mob/living/silicon/ai/AI) //I don't understand why this needs to be under For, but it does. 
 			tab_data["A.I Objective"] = GENERATE_STAT_TEXT("[AI.objectiveupdate]") //What are your Orders Master A.I?
-			tab_data["Busy Flag"] = GENERATE_STAT_TEXT("[busystatus ? "Utilized" : "Standingby"]")
+			tab_data["Busy Flag"] = GENERATE_STAT_TEXT("[busystatus ? "Utilized" : "Standing-by"]")
 	return tab_data
 
 /mob/living/silicon/robot/restrained(ignore_grab)
@@ -1349,14 +1349,16 @@
 	set name = "Toggle Flag"
 	set desc = "Toggle your busy flag off/online to indicate your status to your A.I"
 	busystatus = !busystatus
-	to_chat(usr, "<span class='notice>Flag Toggled [busystatus ? "Offline, unavailable for lowpriority tasking." : "Online, ready for assignment."]</span>") //This isn't reading.
+	playsound(loc, 'sound/machines/ding.ogg', 25)
+	to_chat(usr, "<span class='notice>Flag Toggled [busystatus ? "Offline, unavailable for lowpriority tasking." : "Online, ready for assignment."]</span>")
 
 /mob/living/silicon/robot/verb/setobjective()
 	set category = "Robot Commands"
 	set name = "Set Current Objective"
 	set desc = "Set your current objective, will display to your A.I"
-	var/A = 1
 	busystatus = 1
-	var/mob/living/silicon/ai/AI
-	AI.objectiveupdate = input(src, "What is your current objective, this will be displayed to your A.I.","Update Objective") //Problem, Anything after this won't read, including the to_chat
-	to_chat(src, "<span class='notice'>A.I Assigned Objective Updated. Objective set as follows: [AI.objectiveupdate] </span>")
+	switch(alert("Are you sure you want to set a custom A.I Objective? This will override your previous task.", "Confirm", "Yes", "No"))
+		if("Yes")
+			for(var/mob/living/silicon/ai/AI in GLOB.alive_mob_list)
+				AI.objectiveupdate = input(src, "What is your current objective, this will be displayed to your A.I.","Update Objective") 
+				to_chat(usr, "<span class='notice'>A.I Assigned Objective Updated. Objective set as follows: [AI.objectiveupdate] </span>")
