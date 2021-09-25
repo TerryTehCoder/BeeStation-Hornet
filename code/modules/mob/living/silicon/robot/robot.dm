@@ -36,7 +36,7 @@
 
 	var/shown_robot_modules = 0	//Used to determine whether they have the module menu shown or not
 	var/atom/movable/screen/robot_modules_background
-//Cyborg pathing stuff
+/** Cyborg pathing stuff-Unfinished
 	var/datum/atom_hud/data/bot_path/path_hud = new /datum/atom_hud/data/bot_path()
 	var/data_hud_type = DATA_HUD_DIAGNOSTIC_BASIC
 	var/path_image_icon = 'icons/mob/aibots.dmi'
@@ -44,6 +44,8 @@
 	var/path_image_color = "#2189a3"
 	var/mob/living/silicon/ai/calling_ai //Important for identifying the A.I tasking it?
 	var/list/path = list() //Pathing for Cyborg Waypoints
+**/
+
 //Cyborg Objective Updates
 	var/busystatus = 0 //OCCUPADO, PLEASE HOLD
 
@@ -1276,6 +1278,7 @@
 	if(repairs)
 		heal_bodypart_damage(repairs, repairs - 1)
 
+/** Commented out until I can genuinely remember how byond code works
 /mob/living/silicon/robot/proc/set_path(list/newpath)	
 	path = newpath ? newpath : list()
 	if(!path_hud)
@@ -1339,6 +1342,7 @@
 		to_chat(caller, "<span class='danger'>Failed to calculate a valid route. Ensure destination is clear of obstructions and within range.</span>")
 		set_path(null)
 
+*/
 /mob/living/silicon/robot/proc/objectivesupdate()
 	var/mob/living/silicon/ai/AI
 	to_chat(src, "<span class='notice'>A.I Assigned Objective Updated. [AI.objectivesconfirm] Priority objective recieved as follows: [AI.objectiveupdate] </span>") //Objectives Updated, standby for Emergency Procedures. BEEEEP, BEEEP

@@ -489,11 +489,13 @@
 		if(!Cyborg)
 			return
 		to_chat(Cyborg, "<span class='notice'>Message recieved from stationbound A.I:<font color='yellow'> [cyborgmessage] </font></span>")
+/**	
 	if(href_list["flagwaypoint"])
 		Cyborg = locate(href_list["flagwaypoint"]) in GLOB.alive_mob_list
 		waypoint_mode = 1
 		if(!Cyborg)
 			return
+*/
 	if(href_list["objectivemanage"])
 		Cyborg = locate(href_list["objectivemanage"]) in GLOB.alive_mob_list
 		objectivesconfirm = alert(src, "Indicate Priority level before assignment.", "Priority Level", "Low", "Medium", "High")
@@ -577,10 +579,10 @@
 		//The target must be in view of a camera or near the core.
 	if(turf_check in range(get_turf(src)))
 		call_bot(turf_check)
-		call_cyborg()
+//		call_cyborg()
 	else if(GLOB.cameranet && GLOB.cameranet.checkTurfVis(turf_check))
 		call_bot(turf_check)
-		call_cyborg()
+//		call_cyborg()
 	else
 		to_chat(src, "<span class='danger'>Selected location is not visible.</span>")
 
@@ -659,7 +661,7 @@
 			c += "<td width='30%'>Location: [get_area_name(G, TRUE)]</td>" //Where is BORGIE????
 			c += "<td width='30%'>Cell: [G.cell ? "[G.cell.charge]/[G.cell.maxcharge]" : "Empty"]</td>"
 			c += "<td width='15%'><A HREF=?src=[REF(src)];cyborgmessage=[REF(G)]>Private Message</A></td>"
-			c += "<td width='15%'><A HREF=?src=[REF(src)];flagwaypoint=[REF(G)]>Flag-Waypoint</A></td>" //Flag a Pain in the Ass is what this is.
+//			c += "<td width='15%'><A HREF=?src=[REF(src)];flagwaypoint=[REF(G)]>Flag-Waypoint</A></td>" //Flag a Pain in the Ass is what this is.
 			c += "<td width='15%'><A HREF=?src=[REF(src)];objectivemanage=[REF(G)]>Update Objective</A></td>" 
 			c += "</tr>"
 			c = format_text(c)
@@ -668,13 +670,14 @@
 	popup.set_content(c)
 	popup.open()
 
+/**
 /mob/living/silicon/ai/proc/call_cyborg(turf/waypoint)
 
 	if(!Cyborg)
 		return
 	Cyborg.flagwaypoint(src, waypoint)
 
-
+*/
 /mob/living/silicon/ai/freeCamera(area/home, obj/machinery/camera/cam)
 	for(var/class in alarms)
 		var/our_area = alarms[class][home.name]
