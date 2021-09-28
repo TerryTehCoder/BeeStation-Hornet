@@ -649,7 +649,7 @@
 	for(var/mob/living/silicon/robot/G in connected_robots)
 		if(G.get_virtual_z_level() == ai_Zlevel && !G.emagged) //Only non-emagged Cyborgs on the same Z-level are detected!
 			c += "<tr><td width='30%'>Designation: [G.name]</A> (Module: [G.designation])</td>"
-			c += "<td width='30%'>Integrity: [G.health]% 	 		Flagged as: [G.busystatus ? "Occupied" : "Unoccupied"]		Current Objective: [objectiveupdate]</td>"
+			c += "<td width='30%'>Integrity: [G.health]% <BR>Flagged as: [G.busystatus ? "Occupied" : "Unoccupied"]	<BR>Current Objective: [objectiveupdate]</td>"
 			c += "<td width='30%'>Location: [get_area_name(G, TRUE)]</td>" //Where is BORGIE????
 			c += "<td width='30%'>Cell: [G.cell ? "[G.cell.charge]/[G.cell.maxcharge]" : "Empty"]</td>"
 			c += "<td width='15%'><A HREF=?src=[REF(src)];cyborgmessage=[REF(G)]>Private Message</A></td>"
