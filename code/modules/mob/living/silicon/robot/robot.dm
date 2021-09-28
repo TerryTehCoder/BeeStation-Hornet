@@ -331,7 +331,7 @@
 	if(connected_ai)
 		tab_data["Master AI"] = GENERATE_STAT_TEXT("[connected_ai.name]")
 		for(var/mob/living/silicon/ai/AI) //I don't understand why this needs to be under For, but it does. 
-			tab_data["A.I Objective"] = GENERATE_STAT_TEXT("[AI.objectiveupdate]") //What are your Orders Master A.I?
+			tab_data["[AI.objectivesconfirm] priority A.I Objective"] = GENERATE_STAT_TEXT("[AI.objectiveupdate]") //What are your Orders Master A.I?
 			tab_data["Busy Flag"] = GENERATE_STAT_TEXT("[busystatus ? "Utilized" : "Standing-by"]")
 	return tab_data
 
@@ -1273,6 +1273,7 @@
 	var/mob/living/silicon/ai/AI
 	to_chat(src, "<span class='notice'>A.I Assigned Objective Updated. [AI.objectivesconfirm] Priority objective recieved as follows: [AI.objectiveupdate] </span>") //Objectives Updated, standby for Emergency Procedures. BEEEEP, BEEEP
 	busystatus = 1
+	playsound(loc, 'sound/machines/chime.ogg', 25, 0)
 
 /mob/living/silicon/robot/verb/togglebusy()
 	set category = "Robot Commands"
@@ -1280,7 +1281,7 @@
 	set desc = "Toggle your busy flag off/online to indicate your status to your A.I"
 	busystatus = !busystatus
 	playsound(loc, 'sound/machines/ding.ogg', 25)
-	to_chat(usr, "<span class='notice>Flag Toggled [busystatus ? "Offline, unavailable for lowpriority tasking." : "Online, ready for assignment."]</span>")
+	to_chat(usr, "<span class='notice'>Flag Toggled [busystatus ? "Offline, unavailable for lowpriority tasking." : "Online, ready for assignment."]</span>")
 
 /mob/living/silicon/robot/verb/setobjective()
 	set category = "Robot Commands"

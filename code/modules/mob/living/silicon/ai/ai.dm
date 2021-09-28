@@ -52,7 +52,7 @@
 
 	//Cyborg Objective Updates
 	var/objectiveupdate = "No Assigned Objective" //A.I inputting new objective.
-	var/objectivesconfirm = "Unregistered" //High, Low, Medium Priority?
+	var/objectivesconfirm = "Minimum" //High, Low, Medium Priority?
 
 	//MALFUNCTION
 	var/datum/module_picker/malf_picker
