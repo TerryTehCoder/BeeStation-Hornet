@@ -133,7 +133,7 @@ Bonus
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/S = H.dna.species
-			if(zombie && istype(S, /datum/species/zombie/infectious) && !istype(S, /datum/species/zombie/infectious/fast))
+			if(zombie && istype(S, /datum/species/zombie/infectious) && !istype(S, /datum/species/zombie/infectious/fast) && !istype(S, /datum/species/zombie/infectious/non_infectious))
 				H.set_species(/datum/species/zombie/infectious/fast)
 				to_chat(M, "<span class='warning'>Your extraneous flesh sloughs off, giving you a boost of speed at the cost of a bit of padding!</span>")
 			else if(prob(base_message_chance))
