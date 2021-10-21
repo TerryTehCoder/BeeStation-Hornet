@@ -101,7 +101,7 @@
 	code = "HOOOOOOOOOONK"
 
 /datum/ert/stand
-	roles = list(/datum/antagonist/ert/stand)
+	roles = list(/datum/antagonist/ert/stand, /datum/antagonist/ert/stand/magic, /datum/antagonist/ert/stand/carp, /datum/antagonist/ert/stand/hive)
 	leader_role = /datum/antagonist/ert/stand/commander
 	teamsize = 3
 	opendoors = FALSE

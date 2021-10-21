@@ -166,6 +166,21 @@
 	outfit = /datum/outfit/ert/stand_ert
 	role = "Abnormal Activities Agent"
 
+/datum/antagonist/ert/stand/magic
+	name = "Abnormal Activities Agent"
+	outfit = /datum/outfit/ert/stand_ert/magicstand
+	role = "Abnormal Activities Agent"
+
+/datum/antagonist/ert/stand/carp
+	name = "Abnormal Activities Agent"
+	outfit = /datum/outfit/ert/stand_ert/carpstand
+	role = "Abnormal Activities Agent"
+
+/datum/antagonist/ert/stand/hive
+	name = "Abnormal Activities Agent"
+	outfit = /datum/outfit/ert/stand_ert/hivestand
+	role = "Abnormal Activities Agent"
+
 /datum/antagonist/ert/stand/commander
 	name = "Abnormal Activities Squad Leader"
 	outfit = /datum/outfit/ert/stand_ert/requiem
