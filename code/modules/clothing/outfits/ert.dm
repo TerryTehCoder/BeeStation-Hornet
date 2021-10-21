@@ -457,3 +457,34 @@
 		/obj/item/gun/ballistic/automatic/sniper_rifle=1,\
 		/obj/item/gun/grenadelauncher/security=1,\
 		/obj/item/gun/ballistic/automatic/ar=1)
+
+/datum/outfit/ert/stand_ert
+	name = "Abnormal Activities Agent"
+
+	suit = /obj/item/clothing/suit/delinquent
+	head = /obj/item/clothing/head/delinquent
+	shoes = /obj/item/clothing/shoes/jackboots
+	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
+	back = /obj/item/storage/backpack
+	l_pocket = /obj/item/kitchen/knife/combat
+	r_pocket = /obj/item/tank/internals/emergency_oxygen/double
+	id = /obj/item/card/id/ert
+	backpack_contents = list(/obj/item/storage/box/engineer=1,\
+		/obj/item/radio=1,\
+		/obj/item/instrument/saxophone=1,\
+		/obj/item/instrument/piano_synth=1,\
+		/obj/item/instrument/eguitar=1,\
+		/obj/item/gun/energy/disabler=1, \
+		/obj/item/guardiancreator/tech=1)
+
+/datum/outfit/ert/stand_ert/requiem
+	name = "Abnormal Activities Squad Leader"
+
+	head = /obj/item/clothing/head/beret/ccofficer
+	backpack_contents = list(/obj/item/storage/box/engineer=1,\
+		/obj/item/instrument/saxophone=1,\
+		/obj/item/instrument/piano_synth=1,\
+		/obj/item/instrument/eguitar=1,\
+		/obj/item/gun/energy/disabler=1, \
+		/obj/item/guardiancreator/tech=1, \
+		/obj/item/stand_arrow=1) //this is going to be a mistake

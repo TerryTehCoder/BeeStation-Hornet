@@ -99,3 +99,12 @@
 	mission = "HONK them into submission"
 	polldesc = "an elite Nanotrasen tactical pranking squad"
 	code = "HOOOOOOOOOONK"
+
+/datum/ert/stand
+	roles = list(/datum/antagonist/ert/stand)
+	leader_role = /datum/antagonist/ert/stand/commander
+	teamsize = 3
+	opendoors = FALSE
+	rename_team = "Abnormal Activities Unit"
+	mission = "Figure out what's happening on-station and solve any problems aboard."
+	polldesc = "an elite Nanotrasen strike unit"
