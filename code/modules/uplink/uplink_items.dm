@@ -326,21 +326,21 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/gun_count = 0
 	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null, FALSE, TRUE, FALSE)
 	var/datum/antagonist/user_antag = user.mind.has_antag_datum(/datum/antagonist/traitor)
+	var/obj/structure/closet/crate/C = spawn_item(/obj/structure/closet/crate, user, U)
 	if(isnull(user_antag))
 		to_chat(user, "<span class='warning'><b>Something fucked up. Here's your Telecrystals back, at least.</b></span>")
 		new /obj/item/stack/telecrystal/twenty(get_turf(user))
-		return
+		return C
 	var/user_antag_faction = user_antag.synd_faction
-	if(user_antag_faction & SYND_FACTION_SYND)
+	if((user_antag_faction & SYND_FACTION_SYND) || isnull(user_antag_faction))
 		to_chat(user, "<span class='warning'><b>Something fucked up. Here's your Telecrystals back, at least.</b></span>")
 		new /obj/item/stack/telecrystal/twenty(get_turf(user))
-		return
+		return C
 	for(var/list/L in uplink_items)
 		for(var/datum/uplink_item/UI in L)
 			if(!(UI.faction_flags & user_antag_faction))
 				uplink_items -= UI
 	var/crate_value = starting_crate_value
-	var/obj/structure/closet/crate/C = spawn_item(/obj/structure/closet/crate, user, U)
 	if(U.purchase_log)
 		U.purchase_log.LogPurchase(C, src, cost)
 	while(crate_value)
