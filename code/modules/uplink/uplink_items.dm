@@ -357,13 +357,23 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		if(istype(I, /datum/uplink_item/dangerous) && prob(33))
 			continue
 		if(istype(I, /datum/uplink_item/suits) && prob(50))
-			if(hardsuit_count < 2) //two suits max
+			if(hardsuit_count <= 0)
 				hardsuit_count += 1
+			else if(hardsuit_count == 1)
+				if(prob(33))
+					hardsuit_count += 1
+				else //2 suits max
+					continue
 			else
 				continue
 		if(I.isgun)
-			if(gun_count < 2) //two guns max
+			if(gun_count <= 0)
 				gun_count += 1
+			else if(gun_count == 1)
+				if(prob(33))
+					gun_count += 1
+				else
+					continue
 			else
 				continue
 		crate_value -= I.cost
@@ -630,7 +640,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 25
 	cost = 18
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
-	faction_flags = SYND_FACTION_MI13 | SYND_FACTION_GORLEX | SYND_FACTION_CYBERSUN | SYND_FACTION_SELF | SYND_FACTION_ANIMAL
+	faction_flags = SYND_FACTION_MI13 | SYND_FACTION_GORLEX | SYND_FACTION_CYBERSUN
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -981,7 +991,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
-	faction_flags = SYND_FACTION_MI13 | SYND_FACTION_GORLEX
 
 /datum/uplink_item/ammo/pistolap
 	name = "10mm Armour Piercing Magazine"
@@ -991,7 +1000,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
-	faction_flags = SYND_FACTION_MI13 | SYND_FACTION_GORLEX
 
 /datum/uplink_item/ammo/pistolhp
 	name = "10mm Hollow Point Magazine"
@@ -1001,7 +1009,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
-	faction_flags = SYND_FACTION_MI13 | SYND_FACTION_GORLEX
 
 /datum/uplink_item/ammo/pistolfire
 	name = "10mm Incendiary Magazine"
@@ -1011,13 +1018,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
-	faction_flags = SYND_FACTION_GORLEX //not stealthy enough for MI13
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
 	illegal_tech = FALSE
-	faction_flags = SYND_FACTION_CYBERSUN | SYND_FACTION_GORLEX
 
 /datum/uplink_item/ammo/shotgun/bag
 	name = "12g Ammo Duffel Bag"
