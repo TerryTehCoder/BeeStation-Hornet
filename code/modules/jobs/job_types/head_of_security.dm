@@ -38,6 +38,10 @@
 	. = ..()
 	job_tips(M, "headofsecurity")
 
+	species_outfits = list(
+		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/hos
+	)
+
 /datum/outfit/job/hos
 	name = "Head of Security"
 	jobtype = /datum/job/hos
