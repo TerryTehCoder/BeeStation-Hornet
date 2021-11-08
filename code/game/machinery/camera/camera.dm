@@ -38,7 +38,7 @@
 	var/alarm_on = FALSE
 	var/busy = FALSE
 	var/emped = FALSE  //Number of consecutive EMP's on this camera
-	var/emagged = 0 //Has a chance to deactivate or EMP the Camera. 
+	var/emagged = 0 //Scrambles the Security Cameras C-Tag. 
 	var/in_use_lights = 0
 
 	// Upgrades bitflag
