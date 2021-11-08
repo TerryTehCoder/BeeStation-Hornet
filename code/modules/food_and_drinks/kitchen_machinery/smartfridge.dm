@@ -459,7 +459,7 @@
 /obj/machinery/smartfridge/organ/emag_act(mob/user, obj/item/O)
 	if(!emagged)
 		emagged = TRUE
-		to_chat(user, "<span class='notice'>You disable the smartfridges organ preservation.")
+		to_chat(user, "<span class='notice'>You disable the smartfridge's organ preservation.")
 		for(var/obj/item/organ/organ in /obj/machinery/smartfridge/organ)
 			organ.organ_flags &= ~ORGAN_FROZEN
 

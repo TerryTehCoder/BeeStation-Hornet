@@ -96,16 +96,15 @@
 	"Expected ; at end of line.",\
 	"Var CAT defined but not used.",\
 	"Var CAT not defined. Did you mean to use DOG?",\
-	"Your BYOND version is over the recommended version ["byondversion"]. Stability is not guarenteed.",\
+	"Your BYOND version is over the recommended version ["byondversion"]. Stability is not guaranteed.",\
 	"Warning: Empty 'else' clause.",\
 	"Proc definition not allowed inside another proc.",\
 	"Missing comma ',' or right-paren ')'.",\
-	"list started here.",\
-	"fatal error: the parser cannot continue.",\
-	"constant evaluation will be skipped.",
+	"List started here.",\
+	"Fatal error: the parser cannot continue.",\
+	"Constant evaluation will be skipped.",
 	"Runtime in line 106: Var EMAG not defined.")
-	var/runtimejoke = pick(runtimejokes)
-	say(runtimejoke)
+	say(pick(runtimejokes))
 
 /mob/living/simple_animal/pet/cat/Runtime/Initialize()
 	if(prob(5))

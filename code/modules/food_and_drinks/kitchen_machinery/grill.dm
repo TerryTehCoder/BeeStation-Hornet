@@ -74,6 +74,7 @@
 		if(grill_fuel)
 			var/mob/living/carbon/C = user.pulling
 			user.visible_message("<span class = 'danger'>[user] slams [C]'s face into [src]!</span>")
+			C.emote("scream")
 			if(emagged)
 				C.apply_damage(35, BURN, BODY_ZONE_HEAD) //HOT GRILL HOT GRILL
 				C.Paralyze(60)
