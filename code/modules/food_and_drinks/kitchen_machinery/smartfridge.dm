@@ -19,6 +19,7 @@
 	var/allow_ai_retrieve = FALSE
 	var/list/initial_contents
 	var/visible_contents = TRUE
+	var/emagged = 0 //I don't use this for any fridge except organ storage, but I assume you'll want it in parent for future.
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -433,7 +434,10 @@
 	if(!.)	//if the item loads, clear can_decompose
 		return
 	var/obj/item/organ/organ = O
-	organ.organ_flags |= ORGAN_FROZEN
+	if(emagged) //Twould be a shame if all your precious Organsss decayed...
+		return
+	else
+		organ.organ_flags |= ORGAN_FROZEN
 
 /obj/machinery/smartfridge/organ/RefreshParts()
 	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
@@ -451,6 +455,13 @@
 	. = ..()
 	if(istype(AM))
 		AM.organ_flags &= ~ORGAN_FROZEN
+
+/obj/machinery/smartfridge/organ/emag_act(mob/user, obj/item/O)
+	if(!emagged)
+		emagged = 1
+		to_chat(user, "<span class='notice'>You disable the smartfridges organ preservation.")
+		for(var/obj/item/organ/organ in /obj/machinery/smartfridge/organ)
+			organ.organ_flags &= ~ORGAN_FROZEN
 
 // -----------------------------
 // Chemistry Medical Smartfridge
