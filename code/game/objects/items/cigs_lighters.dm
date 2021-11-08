@@ -553,7 +553,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = ITEM_SLOT_BELT
 	var/lit = 0
 	var/fancy = TRUE
-	var/emagged = 0 //It's really the small things we don't think about.
+	var/emagged = FALSE //It's really the small things we don't think about.
 	var/overlay_state
 	var/overlay_list = list(
 		"plain",
@@ -743,7 +743,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/lighter/emag_act(mob/user)
 	if(!emagged)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You burn out the lighters limiter.</span>")
 
 ///////////

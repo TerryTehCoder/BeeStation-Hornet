@@ -15,7 +15,7 @@
 	var/obj/item/reagent_containers/food/grilled_item
 	var/grill_time = 0
 	var/datum/looping_sound/grill/grill_loop
-	var/emagged = 0 //Now THAT'S H O T. PHEW, FLAMES FOR EVERYONE. 
+	var/emagged = FALSE //Now THAT'S H O T. PHEW, FLAMES FOR EVERYONE. 
 
 /obj/machinery/grill/Initialize()
 	. = ..()
@@ -170,7 +170,7 @@
 
 /obj/machinery/grill/emag_act(mob/user)
 	if(!emagged)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You swipe the sequencer over the grill, and flames shoot up. That's Badass!</span>")
 		visible_message("<span class='warning'Flames erupt from [src]. That was badass!</span>")
 

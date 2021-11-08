@@ -19,7 +19,7 @@
 	var/allow_ai_retrieve = FALSE
 	var/list/initial_contents
 	var/visible_contents = TRUE
-	var/emagged = 0 //I don't use this for any fridge except organ storage, but I assume you'll want it in parent for future.
+	var/emagged = FALSE //I don't use this for any fridge except organ storage, but I assume you'll want it in parent for future.
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -458,7 +458,7 @@
 
 /obj/machinery/smartfridge/organ/emag_act(mob/user, obj/item/O)
 	if(!emagged)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You disable the smartfridges organ preservation.")
 		for(var/obj/item/organ/organ in /obj/machinery/smartfridge/organ)
 			organ.organ_flags &= ~ORGAN_FROZEN

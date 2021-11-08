@@ -37,7 +37,7 @@
 	var/escape_in_progress = FALSE
 	var/message_cooldown
 	var/breakout_time = 300
-	var/emagged = 0
+	var/emagged = FALSE
 	fair_market_price = 10
 	payment_department = ACCOUNT_MED
 
@@ -60,7 +60,7 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/emag_act(mob/user)
 	if(!emagged)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You short out the cryotubes automatic alert and ejection systems.</span>")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()

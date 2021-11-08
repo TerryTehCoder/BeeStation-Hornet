@@ -38,7 +38,7 @@
 	var/alarm_on = FALSE
 	var/busy = FALSE
 	var/emped = FALSE  //Number of consecutive EMP's on this camera
-	var/emagged = 0 //Scrambles the Security Cameras C-Tag. 
+	var/emagged = FALSE //Scrambles the Security Cameras C-Tag. 
 	var/in_use_lights = 0
 
 	// Upgrades bitflag
@@ -174,7 +174,7 @@
 	if(!emagged)
 		to_chat(user, "<span class='notice'>You wave the sequencer over the security camera, scrambling its network tag.")
 		do_sparks(2, 5, src)
-		emagged = 1
+		emagged = TRUE
 		c_tag = pick(scrambledtags)
 	
 
