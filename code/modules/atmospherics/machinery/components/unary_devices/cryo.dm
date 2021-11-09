@@ -61,7 +61,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/emag_act(mob/user)
 	if(!emagged)
 		emagged = TRUE
-		to_chat(user, "<span class='notice'>You short out the cryotubes automatic alert and ejection systems.</span>")
+		to_chat(user, "<span class='notice'>You short out the cryotube's automatic alert and ejection systems.</span>")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
 	..(dir, dir)
