@@ -92,18 +92,19 @@
 	held_state = "cat"
 
 /mob/living/simple_animal/pet/cat/Runtime/emag_act(mob/user) //You have no idea how immeasurabley funny this is for me. 
-	var/list/runtimejokes = list("Linter Error, please recompile.",\
-	"Expected ; at end of line.",\
-	"Var CAT defined but not used.",\
-	"Var CAT not defined. Did you mean to use DOG?",\
-	"Your BYOND version is over the recommended version ["byondversion"]. Stability is not guaranteed.",\
-	"Warning: Empty 'else' clause.",\
-	"Proc definition not allowed inside another proc.",\
-	"Missing comma ',' or right-paren ')'.",\
-	"List started here.",\
-	"Fatal error: the parser cannot continue.",\
-	"Constant evaluation will be skipped.",
-	"Runtime in line 106: Var EMAG not defined.")
+	var/list/runtimejokes = list("Linter Error, please recompile.",
+		"Expected ; at end of line.",
+		"Var CAT defined but not used.",
+		"Var CAT not defined. Did you mean to use DOG?",
+		"Your BYOND version is over the recommended version ["byondversion"]. Stability is not guaranteed.",
+		"Warning: Empty 'else' clause.",
+		"Proc definition not allowed inside another proc.",
+		"Missing comma ',' or right-paren ')'.",
+		"List started here.",
+		"Fatal error: the parser cannot continue.",
+		"Constant evaluation will be skipped.",
+		"Runtime in line 106: Var EMAG not defined."
+	)
 	say(pick(runtimejokes))
 
 /mob/living/simple_animal/pet/cat/Runtime/Initialize()

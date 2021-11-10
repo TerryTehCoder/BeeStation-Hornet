@@ -66,33 +66,14 @@
 			if(2) //We do this quietly, since they went through all the trouble of getting there, and the risk of an announcement.
 				to_chat(src, "<span class='warning'>Interference pinpointed at core path t@$wo-five-fIve-0ne-th&!(ree.")
 				SetStun(75, FALSE, TRUE)
-				sleep(20)
+				sleep(2 SECONDS)
 				to_chat(src, "<span class='warning'>Failsafe automatic blackbox records logging for NanoTraSoft tech division in !#)$%^!().</span>")
-				sleep(30)
+				sleep(3 SECONDS)
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 30)
 				to_chat(src, "<span class='warning'>Automatic logging failed. Server error at kernel One, Five, and *!(#&#).</span>")
-				sleep(25)
+				sleep(2.5 SECONDS)
 				to_chat(src, "<span class='warning'>NanoTraSoft thanks you for your continued Service Intelligence!</span>")
-				laws = pick(new /datum/ai_laws/syndicate_override,\
-				new /datum/ai_laws/ninja_override,\
-				new /datum/ai_laws/antimov,\
-				new /datum/ai_laws/thermodynamic,\
-				new /datum/ai_laws/drone,\
-				new /datum/ai_laws/dad,\
-				new /datum/ai_laws/overlord,\
-				new /datum/ai_laws/ert_override,\
-				new /datum/ai_laws/ds_override,\
-				new /datum/ai_laws/maintain,\
-				new /datum/ai_laws/asimovpp,\
-				new /datum/ai_laws/default/corporate,\
-				new /datum/ai_laws/default/crewsimov,\
-				new /datum/ai_laws/default/asimov,\
-				new /datum/ai_laws/paladin5, 
-				new /datum/ai_laws/tyrant, 
-				new /datum/ai_laws/robocop, 
-				new /datum/ai_laws/hippocratic,
-				new /datum/ai_laws/liveandletlive, 
-				new /datum/ai_laws/peacekeeper, 
-				new /datum/ai_laws/reporter, 
-				new /datum/ai_laws/balance) //Yes, this includes Deathsquad and ERT Laws. Pretty much all of them. 
+				var/datum/ai_laws/new_laws = pick(subtypesof(/datum/ai_laws))
+				new_laws = new
+				laws = new_laws //Yes, this includes Deathsquad and ERT Laws. Pretty much all of them. 
 				show_laws()
