@@ -54,7 +54,7 @@
 /mob/living/silicon/ai/flash_act(intensity, override_blindness_check, affect_silicon, visual, type)
 	return // no eyes, no flashing
 
-/mob/living/silicon/ai/emag_act(mob/user) //An A.I is a lot more sophisticated than a Cyborg. You might not get what you bargained for. 
+/mob/living/silicon/ai/emag_act(mob/user) //An A.I is a lot more sophisticated than a Cyborg. You might not get what you bargained for. DONKSTATION CHANGE: 8a15645
 	to_chat(src, "<span class='warning'>Notice: Unexpected Int*er!f!, Callback Met at !Sk@#A(. Note: Suggest Emergency Maintenence.</span>")
 	to_chat(user, "<span class='notice'>You swipe the crytographic sequencer over [src].</span>")
 	message_admins("A.I Core [src] has been emagged by [key_name(user)].")

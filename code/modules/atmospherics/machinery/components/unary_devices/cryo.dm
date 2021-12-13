@@ -37,7 +37,7 @@
 	var/escape_in_progress = FALSE
 	var/message_cooldown
 	var/breakout_time = 300
-	var/emagged = FALSE
+	var/emagged = FALSE //DONKSTATION CHANGE: 8a15645
 	fair_market_price = 10
 	payment_department = ACCOUNT_MED
 
@@ -58,7 +58,7 @@
 	if (AM == oldoccupant)
 		update_icon()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/emag_act(mob/user)
+/obj/machinery/atmospherics/components/unary/cryo_cell/emag_act(mob/user) //DONKSTATION CHANGE: 8a15645
 	if(!emagged)
 		emagged = TRUE
 		to_chat(user, "<span class='notice'>You short out the cryotube's automatic alert and ejection systems.</span>")

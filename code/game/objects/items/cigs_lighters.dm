@@ -553,7 +553,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = ITEM_SLOT_BELT
 	var/lit = 0
 	var/fancy = TRUE
-	var/emagged = FALSE //It's really the small things we don't think about.
+	var/emagged = FALSE //It's really the small things we don't think about. DONKSTATION CHANGE: 8a15645
 	var/overlay_state
 	var/overlay_list = list(
 		"plain",
@@ -634,7 +634,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				else
 					prot = TRUE
 
-				if((prot || prob(75)) && !emagged)
+				if((prot || prob(75)) && !emagged) 
 					user.visible_message("After a few attempts, [user] manages to light [src].", "<span class='notice'>After a few attempts, you manage to light [src].</span>")
 				else
 					var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
@@ -741,9 +741,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	overlay_state = "slime"
 	grind_results = list(/datum/reagent/iron = 1, /datum/reagent/fuel = 5, /datum/reagent/medicine/pyroxadone = 5)
 
-/obj/item/lighter/emag_act(mob/user)
+/obj/item/lighter/emag_act(mob/user) //DONKSTATION CHANGE: 8a15645
 	if(!emagged)
-		emagged = TRUE
+		emagged = TRUE 
 		to_chat(user, "<span class='notice'>You burn out the lighters limiter.</span>")
 
 ///////////

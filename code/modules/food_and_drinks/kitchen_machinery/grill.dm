@@ -15,7 +15,7 @@
 	var/obj/item/reagent_containers/food/grilled_item
 	var/grill_time = 0
 	var/datum/looping_sound/grill/grill_loop
-	var/emagged = FALSE //Now THAT'S H O T. PHEW, FLAMES FOR EVERYONE. 
+	var/emagged = FALSE //Now THAT'S H O T. PHEW, FLAMES FOR EVERYONE. DONKSTATION CHANGE: 8a15645
 
 /obj/machinery/grill/Initialize()
 	. = ..()
@@ -169,7 +169,7 @@
 /obj/machinery/grill/unwrenched
 	anchored = FALSE
 
-/obj/machinery/grill/emag_act(mob/user)
+/obj/machinery/grill/emag_act(mob/user) //DONKSTATION CHANGE: 8a15645
 	if(!emagged)
 		emagged = TRUE
 		to_chat(user, "<span class='notice'>You swipe the sequencer over the grill, and flames shoot up. That's Badass!</span>")

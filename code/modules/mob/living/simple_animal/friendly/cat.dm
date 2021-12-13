@@ -91,7 +91,7 @@
 	var/memory_saved = FALSE
 	held_state = "cat"
 
-/mob/living/simple_animal/pet/cat/Runtime/emag_act(mob/user) //You have no idea how immeasurabley funny this is for me. 
+/mob/living/simple_animal/pet/cat/Runtime/emag_act(mob/user) //You have no idea how immeasurabley funny this is for me. DONKSTATION CHANGE: 8a15645
 	var/list/runtimejokes = list("Linter Error, please recompile.",
 		"Expected ; at end of line.",
 		"Var CAT defined but not used.",
